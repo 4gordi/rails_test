@@ -220,3 +220,7 @@
  - git push -f heroku master
   
  - heroku open //Откывает залитый проект
+ 
+ - heroku apps:rename newname //Переименовать стандартное имя сайта heroku на свое
+
+ - heroku apps:rename newname --app oldname //Переименовать уже существующий репозиторий на heroku
