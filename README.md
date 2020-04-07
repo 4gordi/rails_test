@@ -146,8 +146,14 @@
  - sudo git remote add origin https://github.com/USER_NAME/demo.git
  
  - git push -u origin master
+
+ - git fetch origin //Показывает информацию об изменениях на удаленном сервере origin
  
+ - git pull origin //Сливает изменения с удаленного сервера origin в локальный сервер
  
+ - git push origin //Сливает изменения с локального сервера на удаленный origin 
+ 
+
  6) Установка хостинга HEROKU
  
  //Необходимо зарегестрироваться на сайте heroku
