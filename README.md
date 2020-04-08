@@ -141,8 +141,10 @@
 
  - ssh-keygen -t rsa -b 4096 -C "your_mail@example.com" //Генерируем ssh ключ для нашего емейл адреса
 
- - ssh-add ~/.ssh/your_key_name //Добавляем ключ в ssh-agent указываем путь до сгенерированного ключами
-
+ - eval 'ssh-agent -s' //Добавляем ключ в ssh-agent указываем путь до сгенерированного ключами
+ 
+ - ssh-add
+ 
  - sudo apt-get install xclip //Устанавливаем софт для копирования из консоли
 
  - cat ~/.ssh/id_rsa.pub //Команда покажет ssh ключ для копирования
