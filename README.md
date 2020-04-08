@@ -1,10 +1,15 @@
-0) Подготовка
+
+
+ 0) Подготовка
+
 
  - sudo apt-get install curl //Установка установщика с урлов
 
  - sudo apt-get install git-core build-essential libgdbm-dev libncurses5-dev automake libtool bison libffi-dev nodejs //Установка зависимостей, можно устанавливать каждый отдельно
 
+
  1) Установка RVM - Ruby Version Manager
+
 
  //переходим на сайт rvm.io там будет список команд для установки rvm
 
@@ -35,13 +40,15 @@
 
  - rvm get stable //Обновление rvm
 
+
 2) Установка Ruby
+
 
  - rvm list known //Выведет список всех новых и старых версий ruby на данный момент времени
 
  - rvm install 2.7.0 //Скомпилирует и установит выбранную версию ruby для вашей ситсемы
 
-//После установки можно проверить версию
+ //После установки можно проверить версию
 
  - ruby -v //Вернет версию установленной ruby
 
@@ -65,7 +72,9 @@
 
  Прописать " gem: --no-document "//Терминал когда увидит строку gem install ... будет добавлять --no-document что не даст установщику устанавливать мануалы по библиотеке, которые очень много весят
 
+
  3) Установка Rails
+
 
  - gem install rails //Установка последней стабильной версии rails
 
@@ -79,7 +88,9 @@
 
  - gem install bundler //Установка установщика библиотек
 
+
  4) Создание первого приложения на rails
+
 
  - cd //Переход в домашнюю директорию
 
@@ -114,7 +125,9 @@
 
  127.0.0.1:3000 //Должна появиться наша тестовая страница
 
+
  5) Установка и настройка GIT
+
 
  //GIT мы установили ранее с азвисимостями git-core, сейчас необходимо настроить под наш аккаунт для это прописываем:
 
@@ -135,6 +148,10 @@
  - cat ~/.ssh/id_rsa.pub //Команда покажет ssh ключ для копирования
 
  //Далее нужно перейти по ссылке https://github.com/settings/keys и вставить ключ
+ 
+ - git remote -v //Проверяем как мы соеденены с удаленным репозиторием по http (https://github.com/LOGIN/NAME.git) или по ssh (git@github.com:LOGIN/NAME.git)
+
+ - git remote set-url origin git@github.com:LOGIN/NAME.git //После выполнения команды при отправке на удаленный сервер не должно запрашивать логин и пароль
 
  //Находясь в папке с новым приложением rails нужно ввести
 
@@ -153,6 +170,7 @@
  - git commit -am "Initial commit" //Добавляет комментарий к изменениям в проекте
 
  //Все команды сверху актуальны для локального репозитория (который находится на вашем ПК)
+ 
  //Ниже команды для создания удаленного репозитория
 
  - sudo curl -u 'USER_NAME' https://api.github.com/user/repos -d'{"name":"demo"}' //Вместо USER_NAME необходимо вписать логин, а вместо demo название репозитория
@@ -173,6 +191,7 @@
 
 
  6) Установка хостинга HEROKU
+
 
  //Необходимо зарегестрироваться на сайте heroku
 
@@ -196,14 +215,18 @@
 
  //Нужно изменить новые зависимости
 
- //добавить строчки:
+ //Добавить строчки:
 
  group :production do
     gem 'pg'
  end
 
  //Перенести gem 'sqlite3' в :development
-
+ 
+ group :development do
+    gem 'sqlite3'
+ end
+ 
  //После этого мы можем выполнить
 
  - bundle install --without production
@@ -218,12 +241,11 @@
 
  //Если прошло с ошибкой, необходимо выполнить:
 
- - git checkout -b fixes
+ - git checkout -b fixes //Создаем ветку с названием "fixes"
 
  //Удалить файл Gemfile.lock
- //
 
- - bundle update
+ - bundle update 
 
  - bundle install --without production
 
@@ -231,9 +253,9 @@
 
  - git commit -am "Update files for heroku v2"
 
- - git checkout master
+ - git checkout master //Переключаемся на ветку master
 
- - git merge fixes
+ - git merge fixes //Сливаем ветку "fixes" с основной веткой "master"
 
  - git push -f heroku master
 
@@ -242,3 +264,19 @@
  - heroku apps:rename newname //Переименовать стандартное имя сайта heroku на свое
 
  - heroku apps:rename newname --app oldname //Переименовать уже существующий репозиторий на heroku
+
+ //После создания базы данных на локальном пк необходимо мигрировать бд на сервере heroku
+
+ - heroku run rake db:migrate //Миграция базы данных на сервере Heroku
+
+ //Если миграция не сработает выполнить цикл команд
+ 
+ - heroku maintenance:on
+
+ - git push heroku master
+
+ - heroku run rake db:migrate
+
+ - heroku maintenance:off
+
+ - heroku restart
