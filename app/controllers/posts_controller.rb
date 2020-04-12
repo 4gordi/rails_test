@@ -18,7 +18,7 @@ class PostsController < ApplicationController
    if @post.save
     redirect_to @post, success: 'Статья успешно создана'
    else
-    flash.now[:danger] = 'Статья не обновлена'
+    flash.now[:danger] = 'Статья не создана'
     render :new
    end
   end
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   end
    
   def post_params
-   params.require(:post).permit( :title, :summary, :body) 
+   params.require(:post).permit( :title, :summary, :body, :image) 
   end
 
 end

@@ -23,7 +23,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
-
+gem 'carrierwave', '~> 2.0'
+gem "mini_magick"
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.16.0', '>= 1.9.9'
 source 'https://rails-assets.org' do
@@ -31,7 +32,7 @@ source 'https://rails-assets.org' do
 end
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
