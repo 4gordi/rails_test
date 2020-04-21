@@ -12,10 +12,10 @@
 
 <body>
 
+<div class="container-fluid container-background">
 
- <div class="container">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="<%= posts_path %>">
      <img src="https://cdn.svgporn.com/logos/github-icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
      #ЯЖБать!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
@@ -34,8 +34,9 @@
           <%= link_to 'Новая статья', new_post_path, class: 'btn btn-outline-light float-right' %>
     </div>
    </nav>
- </div>
-  
+ 
+
+ <div class="container-fluid">
    <div class="container main">
     <div class="row">
      <div class="col-md-12">
@@ -46,9 +47,11 @@
       <% end %>
      </div>
     </div>
-
+   </div>  
+  </div>
     <%= yield %>
-   </div>
+
+</div>
 
   </body>
 </html>
