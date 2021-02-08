@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem "mini_magick"
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.16.0', '>= 1.9.9'
